@@ -1,0 +1,24 @@
+
+
+
+body {
+  margin: 0;
+
+  padding: 0;
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root{
+  display: flex;
+  min-height: 100vh;
+}
+
+.app{
+  display: flex;
+  flex-direction: row;
+}
