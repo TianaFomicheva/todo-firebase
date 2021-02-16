@@ -1,49 +1,37 @@
 import logo from './logo.svg';
-import {db} from './firebase';
+import { get } from './api';
 // import {Typography} from 'mdc-react';
 import AppDrawer from './components/AppDrawer'
-import AppContent from './components/AppContant'
+import AppContent from './components/AppContent'
+import TodoList from './components/TodoList'
 
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.scss';
+import DBContext from './context/db';
 
 
 
 export default function App() {
-  const[todos, setTodos] = useState([])
-  useEffect(()=>{db.collection("todos")
-  .get()
-  .then((querySnapshot) => {
-    const todos = querySnapshot.docs.map((doc)=>({
-      id: doc.id,
-      ...doc.data()
-    }))
-    console.log({todos})
-    setTodos(todos)
-      querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-      });
-  })
-  .catch((error) => {
-      console.log("Error getting documents: ", error);
-  });
+ 
+  const [lists, setLists] = useState([])
+  useEffect(() => {
+    get('lists')().then(setLists)
+    
 
-  },[])
+
+  }, [])
   return (
-    <div className="app">
-       <AppDrawer />
-
-
-      <AppContent> 
-        <ul>
-          {todos.map((todo)=><li key={todo.id}>
-            {todo.title}
-          </li>)}
-        </ul>
-      </AppContent>
-    </div>
-
+    <DBContext.Provider value={{lists, get}}>
+      <div className="app">
+        <AppDrawer lists={lists} />
+        <AppContent>
+          <Switch>
+            <Route path='/:ListId' component={TodoList} />
+          </Switch>
+        </AppContent>
+      </div>
+    </DBContext.Provider>
   );
 }
 
