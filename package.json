@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@material/list": "^10.0.0",
+    "@material/react-checkbox": "^0.15.0",
     "@material/react-drawer": "^0.15.0",
     "@material/react-list": "^0.15.0",
     "@material/react-material-icon": "^0.15.0",
+    "@material/react-typography": "^0.15.0",
+    "@material/typography": "^10.0.0",
     "@rmwc/list": "^6.1.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -15,6 +18,7 @@
     "mdc-react": "^0.19.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-md-spinner": "^1.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "web-vitals": "^1.0.1"

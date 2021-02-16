@@ -3,7 +3,7 @@ import React from 'react'
 
 function AppContent({...props}) {
     return (
-        <main>
+        <main id="app-content">
             <div {...props}></div>
         </main>
     )

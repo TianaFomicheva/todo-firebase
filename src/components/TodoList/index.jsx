@@ -1,21 +1,20 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import DBContext from '../../context/db'
+import { List} from 'mdc-react'
+import  {Headline4} from '@material/react-typography'
+import TodoListItem from '../TodoListItem'
+import './index.scss'
 
-export default function TodoList({match}) {
+export default function TodoList({list, todos }) {
 
-    const [todos, setTodos] = useState([])
-    console.log(match)
-    const db = useContext(DBContext)
-    useEffect(()=>{
-        db.get('todos')(collection=>collection.where('ListId', '==', match.params.ListId))
-        .then(setTodos)
-       
-    },[db, match.params.ListId])
-    return (
-        <ul>
-          {todos.map((todo)=><li key={todo.id}>
-            {todo.title}
-          </li>)}
-        </ul>
-    )
+  
+  return (
+    <div className="todo-list">
+      <Headline4 className="todo-list__title" >{list.title}</Headline4>
+
+      <List className="todo=list__items">
+        {todos.map((todo) => <TodoListItem key={todo.id} todo={todo} />)}
+      </List>
+    </div>
+  )
 }
