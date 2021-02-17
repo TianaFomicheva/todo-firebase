@@ -5,7 +5,7 @@ import  {Headline4} from '@material/react-typography'
 import TodoListItem from '../TodoListItem'
 import './index.scss'
 
-export default function TodoList({list, todos }) {
+export default function TodoList({list, todos, onDelete, onUpdate, onSelect }) {
 
   
   return (
@@ -13,7 +13,7 @@ export default function TodoList({list, todos }) {
       <Headline4 className="todo-list__title" >{list.title}</Headline4>
 
       <List className="todo=list__items">
-        {todos.map((todo) => <TodoListItem key={todo.id} todo={todo} />)}
+        {todos.map((todo) => <TodoListItem key={todo.id} todo={todo} onDelete={onDelete} onUpdate={onUpdate} onSelect={onSelect}/>)}
       </List>
     </div>
   )
