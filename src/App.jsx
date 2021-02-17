@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import { get } from './api';
+import * as api from './api';
 import AppDrawer from './components/AppDrawer'
 import AppContent from './components/AppContent'
 import TodoListPage from './pages/TodoList'
@@ -15,13 +15,13 @@ export default function App() {
  
   const [lists, setLists] = useState([])
   useEffect(() => {
-    get('lists')().then(setLists)
+    api.getLists().then(setLists)
     
 
 
   }, [])
   return (
-    <DBContext.Provider value={{lists, get}}>
+    <DBContext.Provider value={{lists, ...api}}>
       <div className="app">
         <AppDrawer lists={lists} />
         <AppContent>
